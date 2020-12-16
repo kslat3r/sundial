@@ -21,9 +21,6 @@ executors:
   build:
     docker:
       - image: cimg/base:stable
-  deploy:
-    docker:
-      - image: cimg/base:stable
 
 jobs:
   trigger-workflows:
@@ -57,29 +54,6 @@ jobs:
             docker tag sundial-<< parameters.package_name >>:${CIRCLE_SHA1} registry.digitalocean.com/newlinelabs/sundial-<< parameters.package_name >>:${CIRCLE_SHA1}
             docker push registry.digitalocean.com/newlinelabs/sundial-<< parameters.package_name >>:${CIRCLE_SHA1}
 
-  deploy:
-    parameters:
-      package_name:
-        type: string
-    executor: deploy
-    steps:
-      - checkout
-      - install_and_initialize_cli
-      - run:
-          name: Install Helm
-          command: |
-            if which helm > /dev/null; then
-              exit 0
-            fi
-            
-            curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
-            helm version
-      - run:
-          name: Deploy to Kubernetes
-          command: |
-            cd app/<< parameters.package_name >>/helm
-            # ./install.sh
-
 workflows:
   version: 2
 
@@ -97,33 +71,17 @@ workflows:
       - build:
           name: recipe-service-build
           package_name: recipe-service
-      - deploy:
-          name: recipe-service-deploy
-          package_name: recipe-service
-          requires:
-            - recipe-service-build
-  
+      
   traffic-generator:
     when: << pipeline.parameters.traffic-generator >>
     jobs:
       - build:
           name: traffic-generator-build
           package_name: traffic-generator
-      - deploy:
-          name: traffic-generator-deploy
-          package_name: traffic-generator
-          requires:
-            - traffic-generator-build
 
   training-data-generator:
     when: << pipeline.parameters.training-data-generator >>
     jobs:
       - build:
           name: training-data-generator-build
-          package_name: training-data-generator
-      - deploy:
-          name: training-data-generator-deploy
-          package_name: training-data-generator
-          requires:
-            - training-data-generator-build
-  
+          package_name: training-data-generator  
