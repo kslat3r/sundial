@@ -18,13 +18,16 @@ orbs:
   digitalocean: digitalocean/k8s@0.1.1
 
 executors:
+  ci:
+    docker:
+      - image: cimg/base:stable
   build:
     docker:
       - image: cimg/base:stable
 
 jobs:
   # trigger-workflows:
-  #   executor: build
+  #   executor: ci
   #   steps:
   #     - checkout
   #     - run:
@@ -42,6 +45,8 @@ jobs:
     executor: build
     steps:
       - checkout
+      - setup_remote_docker:
+          version: 19.03.13
       - digitalocean/install
       - digitalocean/initialize:
           cluster: sundial-cluster
