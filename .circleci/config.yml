@@ -15,7 +15,7 @@ version: 2.1
 #     default: false
 
 orbs:
-  digitalocean: digitalocean/k8s@0.1.1
+  digitalocean: digitalocean/cli@1.0.0
 
 executors:
   ci:
