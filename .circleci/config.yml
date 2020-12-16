@@ -44,6 +44,7 @@ jobs:
         type: string
     executor: build
     steps:
+      - checkout
       - digitalocean/install
       - digitalocean/initialize
       - setup_remote_docker:
