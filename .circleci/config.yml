@@ -15,7 +15,7 @@ parameters:
     default: false
 
 orbs:
-  k8s: digitalocean/k8s@0.1.1
+  digitalocean: digitalocean/k8s@0.1.1
 
 executors:
   build:
@@ -43,8 +43,8 @@ jobs:
     executor: build
     steps:
       - checkout
-      - install
-      - initialize:
+      - digitalocean/install
+      - digitalocean/initialize:
           cluster: sundial-cluster
       - run:
           name: Create Docker image
