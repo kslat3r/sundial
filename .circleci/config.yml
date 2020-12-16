@@ -1,18 +1,18 @@
 version: 2.1
 
-parameters:
-  trigger:
-    type: boolean
-    default: true
-  recipe-service:
-    type: boolean
-    default: false
-  traffic-generator:
-    type: boolean
-    default: false
-  training-data-generator:
-    type: boolean
-    default: false
+# parameters:
+#   trigger:
+#     type: boolean
+#     default: true
+#   recipe-service:
+#     type: boolean
+#     default: false
+#   traffic-generator:
+#     type: boolean
+#     default: false
+#   training-data-generator:
+#     type: boolean
+#     default: false
 
 orbs:
   digitalocean: digitalocean/k8s@0.1.1
@@ -23,18 +23,17 @@ executors:
       - image: cimg/base:stable
 
 jobs:
-  trigger-workflows:
-    docker:
-      - image: cimg/base:stable
-    steps:
-      - checkout
-      - run:
-          name: Set token
-          command: |
-            echo "export CIRCLE_USER_TOKEN=${CIRCLE_TOKEN}" >> $BASH_ENV
-      - run:
-          name: Trigger workflows
-          command: chmod +x .circleci/monorepo.sh && .circleci/monorepo.sh
+  # trigger-workflows:
+  #   executor: build
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: Set token
+  #         command: |
+  #           echo "export CIRCLE_USER_TOKEN=${CIRCLE_TOKEN}" >> $BASH_ENV
+  #     - run:
+  #         name: Trigger workflows
+  #         command: chmod +x .circleci/monorepo.sh && .circleci/monorepo.sh
 
   build:
     parameters:      
@@ -49,41 +48,41 @@ jobs:
       - run:
           name: Create Docker image
           command: |
-            docker build -t sundial-<< parameters.package_name >>:${CIRCLE_SHA1} ./app/<< parameters.package_name >>
+            docker build -t sundial-recipe-service:${CIRCLE_SHA1} ./app/recipe-service
       - run:
           name: Push Docker image
           command: |
-            docker tag sundial-<< parameters.package_name >>:${CIRCLE_SHA1} registry.digitalocean.com/newlinelabs/sundial-<< parameters.package_name >>:${CIRCLE_SHA1}
-            docker push registry.digitalocean.com/newlinelabs/sundial-<< parameters.package_name >>:${CIRCLE_SHA1}
+            docker tag sundial-recipe-service:${CIRCLE_SHA1} registry.digitalocean.com/newlinelabs/sundial-recipe-service:${CIRCLE_SHA1}
+            docker push registry.digitalocean.com/newlinelabs/sundial-recipe-service:${CIRCLE_SHA1}
 
 workflows:
   version: 2
 
-  ci:
-    when: << pipeline.parameters.trigger >>
-    jobs:
-      - trigger-workflows:
-          filters:
-              branches:
-                only: master
+  # ci:
+  #   when: << pipeline.parameters.trigger >>
+  #   jobs:
+  #     - trigger-workflows:
+  #         filters:
+  #             branches:
+  #               only: master
 
   recipe-service:
-    when: << pipeline.parameters.recipe-service >>
+    # when: << pipeline.parameters.recipe-service >>
     jobs:
       - build:
           name: recipe-service-build
           package_name: recipe-service
       
-  traffic-generator:
-    when: << pipeline.parameters.traffic-generator >>
-    jobs:
-      - build:
-          name: traffic-generator-build
-          package_name: traffic-generator
+  # traffic-generator:
+  #   when: << pipeline.parameters.traffic-generator >>
+  #   jobs:
+  #     - build:
+  #         name: traffic-generator-build
+  #         package_name: traffic-generator
 
-  training-data-generator:
-    when: << pipeline.parameters.training-data-generator >>
-    jobs:
-      - build:
-          name: training-data-generator-build
-          package_name: training-data-generator  
+  # training-data-generator:
+  #   when: << pipeline.parameters.training-data-generator >>
+  #   jobs:
+  #     - build:
+  #         name: training-data-generator-build
+  #         package_name: training-data-generator  
