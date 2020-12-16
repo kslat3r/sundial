@@ -1,8 +1,8 @@
 {
     "pages": 1,
     "packages": {
-      "test-gather-training-data": ["test/gather-training-data"],
-      "test-generate-traffic": ["test/generate-traffic"],
-      "test-recipe-service": ["test/recipe-service"]
+      "recipe-service": ["app/recipe-service"],
+      "traffic-generator": ["app/traffic-generator"],
+      "training-data-generator": ["app/training-data-generator"]
     }
   }
