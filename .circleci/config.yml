@@ -50,6 +50,9 @@ jobs:
       - setup_remote_docker:
           version: 19.03.13
       - run:
+          name: Log in to Digital Ocean Docker Registry
+          command: doctl registry login
+      - run:
           name: Create Docker image
           command: |
             docker build -t sundial-recipe-service:${CIRCLE_SHA1} ./app/recipe-service
