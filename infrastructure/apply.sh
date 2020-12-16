@@ -11,3 +11,5 @@ popd
 pushd istio
 source ./apply.sh
 popd
+
+echo "Done"
