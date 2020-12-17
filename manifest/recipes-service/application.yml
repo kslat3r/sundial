@@ -35,6 +35,7 @@ spec:
           requests:
             cpu: 200m
           limits:
+            memory: 128Mi
             cpu: 300m
         livenessProbe:
           tcpSocket:
