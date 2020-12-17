@@ -84,10 +84,11 @@ jobs:
             curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
             helm version
       - run:
+          name: Authenticate cluster
+          command: doctl kubernetes cluster kubeconfig save sundial-cluster
+      - run:
           name: Deploy to Kubernetes
           command: |
-            doctl kubernetes cluster kubeconfig save sundial-cluster  
-            
             cd app/<< parameters.package_name >>/helm
             ./install.sh
 
