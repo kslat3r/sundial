@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: {{ .Release.Name }}
-        image: gcr.io/blojchain-297012/blojchain-node:{{ .Values.image.tag }}
+        image: registry.digitalocean.com/newlinelabs/sundial-{{ .Release.Name }}:{{ .Values.image.tag }}
         imagePullPolicy: Always
         env:
         - name: RECIPE_TYPE
