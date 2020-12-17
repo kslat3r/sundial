@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: {{ .Release.Name }}
-        image: registry.digitalocean.com/newlinelabs/sundial-{{ .Release.Name }}:{{ .Values.image.tag }}
+        image: registry.digitalocean.com/newlinelabs/sundial-recipe-service:{{ .Values.image.tag }}
         imagePullPolicy: Always
         env:
         - name: RECIPE_TYPE
