@@ -24,6 +24,9 @@ executors:
   build:
     docker:
       - image: cimg/base:stable
+  deploy:
+    docker:
+      - image: cimg/base:stable
 
 jobs:
   trigger-workflows:
@@ -61,6 +64,30 @@ jobs:
           command: |
             docker tag sundial-<< parameters.package_name >>:${CIRCLE_SHA1} registry.digitalocean.com/newlinelabs/sundial-<< parameters.package_name >>:${CIRCLE_SHA1}
             docker push registry.digitalocean.com/newlinelabs/sundial-<< parameters.package_name >>:${CIRCLE_SHA1}
+    
+  deploy:
+    parameters:
+      package_name:
+        type: string
+    executor: deploy
+    steps:
+      - checkout
+      - digitalocean/install
+      - digitalocean/initialize
+      - run:
+          name: Install Helm
+          command: |
+            if which helm > /dev/null; then
+              exit 0
+            fi
+            
+            curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+            helm version
+      - run:
+          name: Deploy to Kubernetes
+          command: |
+            cd app/<< parameters.package_name >>/helm
+            ./install.sh
 
 workflows:
   version: 2
@@ -79,6 +106,11 @@ workflows:
       - build:
           name: recipe-service-build
           package_name: recipe-service
+      - deploy:
+          name: recipe-service-deploy
+          package_name: recipe-service
+          requires:
+            - recipe-service-build
       
   traffic-generator:
     when: << pipeline.parameters.traffic-generator >>

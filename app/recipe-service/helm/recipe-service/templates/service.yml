@@ -1,13 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: recipes-service
+  name: {{ .Release.Name }}-service
   namespace: api
-  labels:
-    fluxcd.io/automated: "true"
 spec:
   selector:
-    app: recipes-service
+    app: {{ .Release.Name }}-service
   ports:
   - port: 3000
     name: http

@@ -12,8 +12,4 @@ pushd istio
 source ./apply.sh
 popd
 
-pushd flux
-source ./apply.sh
-popd
-
 echo "Done"

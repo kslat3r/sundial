@@ -1,31 +1,33 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: recipes-service
+  name: {{ .Release.Name }}
+  namespace: api
   labels:
-    app: recipes-service
+    app: {{ .Release.Name }}
     version: v1.0.0
     servicemode: primary
-  namespace: api
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: recipes-service
+      app: {{ .Release.Name }}
       version: v1.0.0
   template:
     metadata:
       labels:
-        app: recipes-service
+        app: {{ .Release.Name }}
         version: v1.0.0
     spec:
       containers:
-      - name: recipes-service
-        image: newlinelabs/sundial-sunshine-recipes:latest
+      - name: {{ .Release.Name }}
+        image: gcr.io/blojchain-297012/blojchain-node:{{ .Values.image.tag }}
         imagePullPolicy: Always
-        envFrom:
-        - configMapRef:
-            name: sundial-sunshine-recipes-service-config
+        env:
+        - name: RECIPE_TYPE
+          value: {{ .Values.recipe.type }}
+        - name: FIBONACCI
+          value: "1000"
         ports:
         - containerPort: 3000
           protocol: TCP
@@ -49,5 +51,3 @@ spec:
           timeoutSeconds: 1
         securityContext:
           privileged: false
-      imagePullSecrets:
-      - name: registry-credentials
