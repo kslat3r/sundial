@@ -3,6 +3,8 @@ kind: HorizontalPodAutoscaler
 metadata:
   name: recipes-service-autoscaler
   namespace: api
+  labels:
+    fluxcd.io/automated: "true"
 spec:
   scaleTargetRef:
     apiVersion: apps/v1

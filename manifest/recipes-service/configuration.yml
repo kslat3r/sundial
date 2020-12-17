@@ -3,6 +3,8 @@ kind: ConfigMap
 metadata:
   name: sundial-sunshine-recipes-service-config
   namespace: api
+  labels:
+    fluxcd.io/automated: "true"
 data:
   BREAKFAST_SERVICE_HOSTNAME: "http://breakfast-service:3000"
   BREAKFAST_SERVICE_PATH: "/api/v1.0/recipes"

@@ -4,7 +4,7 @@ metadata:
   name: recipes-service
   namespace: api
   labels:
-    specification-identifier: recipes-service
+    fluxcd.io/automated: "true"
 spec:
   selector:
     app: recipes-service

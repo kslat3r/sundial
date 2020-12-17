@@ -2,11 +2,12 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: recipes-service
+  namespace: api
   labels:
     app: recipes-service
     version: v1.0.0
     servicemode: primary
-  namespace: api
+    fluxcd.io/automated: "true"  
 spec:
   replicas: 1
   selector:
