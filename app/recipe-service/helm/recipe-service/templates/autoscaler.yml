@@ -10,9 +10,4 @@ spec:
     name: {{ .Release.Name }}
   minReplicas: 1
   maxReplicas: 10
-  metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      targetAverageUtilization: 80
-    
+  targetCPUUtilizationPercentage: 80
