@@ -89,6 +89,7 @@ spec:
           mountPath: /tmp
         args:
         - --kubelet-preferred-address-types=InternalIP
+        - --kubelet-insecure-tls
 ---
 apiVersion: v1
 kind: Service
