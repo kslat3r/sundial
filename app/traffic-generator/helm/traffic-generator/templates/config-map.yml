@@ -4,8 +4,8 @@ metadata:
   name: {{ .Release.Name }}
   namespace: sundial-system
 data:
-  BREAKFAST_URL: "http://breakfast-service.api.svc.cluster.local:3000/api/v1.0/recipes"
-  LUNCH_URL: "http://lunch-service.api.svc.cluster.local:3000/api/v1.0/recipes"
-  DINNER_URL: "http://dinner-service.api.svc.cluster.local:3000/api/v1.0/recipes"
+  BREAKFAST_URL: "http://206.189.247.210:3000/api/v1.0/recipes"
+  LUNCH_URL: "http://206.189.246.22:3000/api/v1.0/recipes"
+  DINNER_URL: "http://206.189.246.6:3000/api/v1.0/recipes"
   INTERVAL: "1000"
   STEPS: "10"
