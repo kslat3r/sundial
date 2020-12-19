@@ -7,7 +7,10 @@ module.exports = (url, numRequests) => {
     requests.push(() => request({
       uri: url,
       timeout: 30000
-    }))
+    }.catch((err) => {
+      console.log(uri)
+      console.log(err.message)
+    })))
   }
 
   return requests
