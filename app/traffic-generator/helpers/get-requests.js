@@ -1,11 +1,6 @@
 const request = require('request-promise')
-const {
-  INGRESS_HOST: ingressHost,
-  INGRESS_PORT: ingressPort
-} = process.env
 
-module.exports = (path, numRequests) => {
-  const url = `http://${ingressHost}:${ingressPort}/api/v1.0/recipes/${path}`
+module.exports = (url, numRequests) => {
   const requests = []
 
   for (let i = 0; i < numRequests; i++) {
