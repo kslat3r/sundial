@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Release.Name }}-config
+  name: {{ .Release.Name }}
   namespace: sundial-system
 data:
-  INGRESS_HOST: "35.246.204.159"
-  INGRESS_PORT: "80"
+  BREAKFAST_URL: "http://breakfast-service.api.svc.cluster.local:3000/api/v1.0/recipes"
+  LUNCH_URL: "http://lunch-service.api.svc.cluster.local:3000/api/v1.0/recipes"
+  DINNER_URL: "http://dinner-service.api.svc.cluster.local:3000/api/v1.0/recipes"
   INTERVAL: "1000"
   STEPS: "10"
-

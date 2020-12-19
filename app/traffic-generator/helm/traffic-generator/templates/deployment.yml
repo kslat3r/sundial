@@ -25,4 +25,4 @@ spec:
         imagePullPolicy: Always
         envFrom:
         - configMapRef:
-            name: {{ .Release.Name }}-config
+            name: {{ .Release.Name }}

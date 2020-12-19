@@ -1,10 +1,9 @@
-const { RECIPE_TYPE } = process.env
 const express = require('express')
 const router = express.Router()
 const fibonacci = require('fibonacci')
 const data = require('../data/recipes.js')
 
-router.get(`/recipes/${RECIPE_TYPE}`, async (req, res) => {
+router.get(`/recipes`, async (req, res) => {
   const fib = fibonacci.iterate(process.env.FIBONACCI ? parseInt(process.env.FIBONACCI) : 5000)
 
   res.send(Object.assign({}, {

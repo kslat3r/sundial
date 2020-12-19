@@ -2,7 +2,10 @@ require('dotenv').config()
 
 const {
   INTERVAL: interval,
-  STEPS: steps
+  STEPS: steps,
+  BREAKFAST_URL: breakfastUrl,
+  LUNCH_URL: lunchUrl,
+  DINNER_URL: dinnerUrl
 } = process.env
 
 const getNumSecondsSinceMidnight = require('./helpers/get-num-seconds-since-midnight')
@@ -25,9 +28,9 @@ const go = async () => {
     console.log(`Dinner count ${dinnerCount}`)
     console.log('--')
 
-    const breakfastRequests = getRequests('breakfast', breakfastCount)
-    const lunchRequests = getRequests('lunch', lunchCount)
-    const dinnerRequests = getRequests('dinner', dinnerCount)
+    const breakfastRequests = getRequests(breakfastUrl, breakfastCount)
+    const lunchRequests = getRequests(lunchUrl, lunchCount)
+    const dinnerRequests = getRequests(dinnerUrl, dinnerCount)
 
     const breakfastChunks = getChunks(breakfastRequests, steps)
     const lunchChunks = getChunks(lunchRequests, steps)
