@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Release.Name }}
@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: {{ .Release.Name }}
-        image: registry.digitalocean.com/newlinelabs/sundial-traffic-generator:{{ .Values.image.tag }}
+        image: registry.digitalocean.com/newlinelabs/sundial-{{ .Release.Name }}:{{ .Values.image.tag }}
         imagePullPolicy: Always
         envFrom:
         - configMapRef:
