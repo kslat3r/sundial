@@ -3,21 +3,15 @@ kind: Deployment
 metadata:
   name: {{ .Release.Name }}
   namespace: api
-  labels:
-    app: {{ .Release.Name }}
-    version: v1.0.0
-    servicemode: primary
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: {{ .Release.Name }}
-      version: v1.0.0
   template:
     metadata:
       labels:
         app: {{ .Release.Name }}
-        version: v1.0.0
     spec:
       containers:
       - name: {{ .Release.Name }}
@@ -47,5 +41,3 @@ spec:
           initialDelaySeconds: 10
           periodSeconds: 5
           timeoutSeconds: 1
-        securityContext:
-          privileged: false
