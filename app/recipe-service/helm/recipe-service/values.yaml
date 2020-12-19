@@ -1,5 +1,2 @@
 image:
     tag: 1.0.0
-
-recipes:
-    type: default

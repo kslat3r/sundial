@@ -7,3 +7,5 @@ kubectl create ns sundial-system || true
 kubectl create ns istio-system || true
 kubectl label namespace api istio-injection=enabled --overwrite
 kubectl label namespace default sundial istio-injection=disabled --overwrite
+
+kubectl apply -f doks-metrics-server.yaml
