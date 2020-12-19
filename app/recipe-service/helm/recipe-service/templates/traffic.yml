@@ -24,8 +24,6 @@ spec:
   - match:
     - uri:
         prefix: "/api/v1.0/recipes/{{ .Values.type }}"
-    rewrite:
-        uri: "/api/v1.0/recipes"
     route:
     - destination:
         host: {{ .Release.Name }}.api.svc.cluster.local

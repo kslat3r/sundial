@@ -7,3 +7,4 @@ istioctl install -y
 kubectl apply -f kiali.yml
 kubectl apply -f grafana.yml
 kubectl apply -f prometheus.yml
+kubectl apply -f gateway.yml
