@@ -1,0 +1,28 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  namespace: sundial-system
+  labels:
+    app: {{ .Release.Name }}
+    version: v1.0.0
+    servicemode: primary
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+      version: v1.0.0
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+        version: v1.0.0
+    spec:
+      containers:
+      - name: {{ .Release.Name }}
+        image: registry.digitalocean.com/newlinelabs/sundial-traffic-generator:{{ .Values.image.tag }}
+        imagePullPolicy: Always
+        envFrom:
+        - configMapRef:
+            name: {{ .Release.Name }}-config

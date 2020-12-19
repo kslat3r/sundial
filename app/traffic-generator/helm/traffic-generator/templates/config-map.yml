@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: sundial-sunshine-traffic-config
-  namespace: sundial
+  name: {{ .Release.Name }}-config
+  namespace: sundial-system
 data:
   INGRESS_HOST: "35.246.204.159"
   INGRESS_PORT: "80"

@@ -121,6 +121,11 @@ workflows:
       - build:
           name: traffic-generator-build
           package_name: traffic-generator
+      - deploy:
+          name: traffic-generator-deploy
+          package_name: traffic-generator
+          requires:
+            - traffic-generator-build
 
   training-data-generator:
     when: << pipeline.parameters.training-data-generator >>
