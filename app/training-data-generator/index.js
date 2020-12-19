@@ -28,9 +28,9 @@ const go = async (headers = false) => {
     queryHttpRequestTotalError(queryInterval, start, ns),
     queryHttpRequestDuration(queryInterval, start, ns),
     querySumContainerCpuUsage(queryInterval, start, ns),
-    querySumContainerMemoryUsage(start, ns),
+    querySumContainerMemoryUsage(queryInterval, start, ns),
     queryAvgContainerCpuUsage(queryInterval, start, ns),
-    queryAvgContainerMemoryUsage(start, ns),
+    queryAvgContainerMemoryUsage(queryInterval, start, ns),
     queryNumPods(start, ns)
   ];
 

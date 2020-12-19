@@ -1,0 +1,34 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: {{ .Release.Name }}
+  namespace: api
+spec:
+  host: {{ .Release.Name }}
+  subsets:
+  - labels:
+      version: v1.0.0
+    name: primary
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: {{ .Release.Name }}
+  namespace: api
+spec:
+  hosts:
+  - {{ .Release.Name }}
+  gateways:
+  - mesh
+  http:
+  - match:
+    - uri:
+        prefix: "/api/v1.0/recipes"
+    route:
+    - destination:
+        host: {{ .Release.Name }}.api.svc.cluster.local
+        subset: primary
+    retries:
+      attempts: 3
+      perTryTimeout: 2s
+
