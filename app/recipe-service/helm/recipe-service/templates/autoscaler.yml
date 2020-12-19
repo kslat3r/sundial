@@ -9,5 +9,5 @@ spec:
     kind: Deployment
     name: {{ .Release.Name }}
   minReplicas: 1
-  maxReplicas: 25
+  maxReplicas: 10
   targetCPUUtilizationPercentage: 80
