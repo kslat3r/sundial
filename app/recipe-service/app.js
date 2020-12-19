@@ -5,6 +5,7 @@ const cors = require('cors')
 const winston = require('express-winston')
 const createError = require('http-errors')
 const logger = require('./lib/logger')
+const healthzRouter = require('./routes/recipes')
 const recipesRouter = require('./routes/recipes')
 
 // setup express
@@ -16,6 +17,7 @@ app.use(winston.logger({ winstonInstance: logger }))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
+app.use(healthzRouter)
 app.use('/api/v1.0', recipesRouter)
 
 app.use((req, res, next) => {
