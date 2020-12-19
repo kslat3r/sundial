@@ -1,4 +1,4 @@
-apiVersion: autoscaling/v1
+apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
   name: {{ .Release.Name }}
@@ -10,4 +10,7 @@ spec:
     name: {{ .Release.Name }}
   minReplicas: 1
   maxReplicas: 10
-  targetCPUUtilizationPercentage: 80
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
