@@ -8,7 +8,7 @@ module.exports = (url, numRequests) => {
       uri: url,
       timeout: 30000
     }).catch((err) => {
-      console.log(uri)
+      console.log(url)
       console.log(err.message)
     }))
   }
