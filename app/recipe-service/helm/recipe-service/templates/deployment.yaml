@@ -29,17 +29,3 @@ spec:
             cpu: 200m
           limits:
             cpu: 300m
-        livenessProbe:
-          httpGet:
-            path: /healthz
-            port: 3000
-          initialDelaySeconds: 20
-          periodSeconds: 5
-          timeoutSeconds: 1
-        readinessProbe:
-          httpGet:
-            path: /healthz
-            port: 3000
-          initialDelaySeconds: 10
-          periodSeconds: 5
-          timeoutSeconds: 1
