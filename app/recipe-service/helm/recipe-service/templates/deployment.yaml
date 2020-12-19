@@ -25,7 +25,7 @@ spec:
         imagePullPolicy: Always
         env:
         - name: FIBONACCI
-          value: "1000"
+          value: "500"
         ports:
         - containerPort: 3000
           protocol: TCP
