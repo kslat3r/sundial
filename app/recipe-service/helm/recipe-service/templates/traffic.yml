@@ -17,7 +17,7 @@ metadata:
   namespace: api
 spec:
   hosts:
-  - *
+  - "*"
   gateways:
   - ingress-gateway
   http:
