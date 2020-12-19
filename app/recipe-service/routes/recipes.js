@@ -6,10 +6,9 @@ const data = require('../data/recipes.js')
 router.get(`/recipes`, async (req, res) => {
   const fib = fibonacci.iterate(process.env.FIBONACCI ? parseInt(process.env.FIBONACCI) : 5000)
 
-  res.send(Object.assign({}, {
-    data,
-    number: fib.number
-  }))
+  data[0].number = fib.number
+
+  res.send(data)
 })
 
 module.exports = router
