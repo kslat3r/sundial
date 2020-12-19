@@ -5,7 +5,7 @@ const cors = require('cors')
 const winston = require('express-winston')
 const createError = require('http-errors')
 const logger = require('./lib/logger')
-const healthzRouter = require('./routes/recipes')
+const healthzRouter = require('./routes/healthz')
 const recipesRouter = require('./routes/recipes')
 
 // setup express
