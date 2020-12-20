@@ -2,14 +2,14 @@ const debug = require('./debug');
 const map = require('./map');
 
 module.exports = (headers, httpRequestTotal, httpRequestTotalError, httpRequestDuration, sumContainerCpuUsage, sumContainerMemoryUsage, avgContainerCpuUsage, avgContainerMemoryUsage, numPods) => {
-  // debug('HTTP request total', httpRequestTotal);
-  // debug('HTTP request total error', httpRequestTotalError);
-  // debug('HTTP request duration', httpRequestDuration);
-  // debug('Sum container CPU usage', sumContainerCpuUsage);
-  // debug('Sum container memory usage', sumContainerMemoryUsage);
-  // debug('Avg container CPU usage', avgContainerCpuUsage);
-  // debug('Avg container memory usage', avgContainerMemoryUsage);
-  // debug('Number of pods', numPods);
+  debug('HTTP request total', httpRequestTotal);
+  debug('HTTP request total error', httpRequestTotalError);
+  debug('HTTP request duration', httpRequestDuration);
+  debug('Sum container CPU usage', sumContainerCpuUsage);
+  debug('Sum container memory usage', sumContainerMemoryUsage);
+  debug('Avg container CPU usage', avgContainerCpuUsage);
+  debug('Avg container memory usage', avgContainerMemoryUsage);
+  debug('Number of pods', numPods);
 
   const records = [];
 
