@@ -1,10 +1,10 @@
-kind: PersistentVolumeClaim
 apiVersion: v1
+kind: PersistentVolumeClaim
 metadata:
   name: {{ .Release.Name }}
   namespace: sundial-system
 spec:
-  storageClassName: standard
+  storageClassName: do-block-storage
   accessModes:
     - ReadWriteOnce
   resources:
