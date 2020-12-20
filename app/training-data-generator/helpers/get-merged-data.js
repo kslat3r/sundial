@@ -38,11 +38,11 @@ module.exports = (headers, httpRequestTotal, httpRequestTotalError, httpRequestD
       record.push(map(httpRequestTotal, unixTime, containerName, 'destination_app', 0));
       record.push(map(httpRequestTotalError, unixTime, containerName, 'destination_app', 0));
       record.push(map(httpRequestDuration, unixTime, containerName, 'destination_app', null));
-      record.push(map(sumContainerCpuUsage, unixTime, containerName, 'container_name', null));
-      record.push(map(sumContainerMemoryUsage, unixTime, containerName, 'container_name', null));
-      record.push(map(avgContainerCpuUsage, unixTime, containerName, 'container_name', null));
-      record.push(map(avgContainerMemoryUsage, unixTime, containerName, 'container_name', null));
-      record.push(map(numPods, unixTime, containerName, 'container_name', 0));
+      record.push(map(sumContainerCpuUsage, unixTime, containerName, 'container', null));
+      record.push(map(sumContainerMemoryUsage, unixTime, containerName, 'container', null));
+      record.push(map(avgContainerCpuUsage, unixTime, containerName, 'container', null));
+      record.push(map(avgContainerMemoryUsage, unixTime, containerName, 'container', null));
+      record.push(map(numPods, unixTime, containerName, 'container', 0));
 
       records.push(record);
     });

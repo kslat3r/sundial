@@ -18,7 +18,7 @@
   "homepage": "https://github.com/kslat3r/sundial-hose#readme",
   "dependencies": {
     "dotenv": "^8.1.0",
-    "fast-csv": "^3.4.0",
+    "fast-csv": "^4.3.6",
     "request": "^2.88.0",
     "request-promise": "^4.2.4"
   },
