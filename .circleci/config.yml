@@ -132,4 +132,9 @@ workflows:
     jobs:
       - build:
           name: training-data-generator-build
-          package_name: training-data-generator  
+          package_name: training-data-generator
+      - deploy:
+          name: training-data-generator-deploy
+          package_name: training-data-generator
+          requires:
+            - training-data-generator-build

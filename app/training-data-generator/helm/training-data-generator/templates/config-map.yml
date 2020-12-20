@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: sundial-hose-config
-  namespace: sundial
+  name: {{ .Release.Name }}
+  namespace: sundial-system
 data:
   NAMESPACE: "api"
-  PROMETHEUS_HOST: "10.65.14.15"
+  PROMETHEUS_HOST: "10.245.123.199"
   PROMETHEUS_PORT: "9090"
   PROMETHEUS_RANGE_QUERY_PATH: "/api/v1/query_range"
   INTERVAL: "30000"

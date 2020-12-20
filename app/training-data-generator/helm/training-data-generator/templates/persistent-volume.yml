@@ -1,8 +1,8 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: sundial-hose-storage
-  namespace: sundial
+  name: {{ .Release.Name }}
+  namespace: sundial-system
 spec:
   storageClassName: standard
   accessModes:

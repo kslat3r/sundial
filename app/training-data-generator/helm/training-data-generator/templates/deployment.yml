@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  namespace: sundial-system
+  labels:
+    app: {{ .Release.Name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: {{ .Release.Name }}
+        image: registry.digitalocean.com/newlinelabs/sundial-{{ .Release.Name }}:{{ .Values.image.tag }}
+        imagePullPolicy: Always
+        envFrom:
+        - configMapRef:
+            name: {{ .Release.Name }}
+        volumeMounts:
+        - name: {{ .Release.Name }}
+          mountPath: /data
+      volumes:
+      - name: {{ .Release.Name }}
+        persistentVolumeClaim:
+          claimName: {{ .Release.Name }}
+
