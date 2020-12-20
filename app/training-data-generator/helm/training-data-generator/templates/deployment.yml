@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: {{ .Release.Name }}
-        image: registry.digitalocean.com/newlinelabs/sundial-{{ .Release.Name }}:{{ .Values.image.tag }}
+        image: registry.digitalocean.com/newlinelabs/sundial-training-data-generator:{{ .Values.image.tag }}
         imagePullPolicy: Always
         envFrom:
         - configMapRef:
