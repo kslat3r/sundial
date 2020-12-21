@@ -32,6 +32,6 @@ spec:
         subset: primary
     retries:
       attempts: 3
-      perTryTimeout: 2s
+      perTryTimeout: 30s
     timeout: 30s
 
