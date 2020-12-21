@@ -22,11 +22,11 @@ const go = async () => {
     const lunchCount = getNumRequests(time, 50, 12, 7200)
     const dinnerCount = getNumRequests(time, 100, 19, 7200) + getNumRequests(time, 100, -5, 7200)
 
-    console.log(new Date().toISOString())
-    console.log(`Breakfast count ${breakfastCount}`)
-    console.log(`Lunch count ${lunchCount}`)
-    console.log(`Dinner count ${dinnerCount}`)
-    console.log('--')
+    // console.log(new Date().toISOString())
+    // console.log(`Breakfast count ${breakfastCount}`)
+    // console.log(`Lunch count ${lunchCount}`)
+    // console.log(`Dinner count ${dinnerCount}`)
+    // console.log('--')
 
     const breakfastRequests = getRequests(breakfastUrl, breakfastCount)
     const lunchRequests = getRequests(lunchUrl, lunchCount)
