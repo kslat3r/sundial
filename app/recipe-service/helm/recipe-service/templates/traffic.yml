@@ -33,4 +33,5 @@ spec:
     retries:
       attempts: 3
       perTryTimeout: 2s
+    timeout: 30s
 
