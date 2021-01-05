@@ -60,3 +60,8 @@ infrastructure/tf/token.txt
 infrastructure/tf/.terraform
 infrastructure/tf/terraform.tfstate*
 infrastructure/istio/istio
+
+model/data/ts_data
+model/data/ts_val_data
+model/data/household_power_consumption.csv
+model/.ipynb_checkpoints
